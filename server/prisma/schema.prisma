@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String
+  name     String
+  invoices Invoice[] // Add this field for the inverse relation
+}
+
+model Invoice {
+  id          Int      @id @default(autoincrement())
+  vendor_name String
+  amount      Float
+  due_date    DateTime
+  description String
+  paid        Boolean
+  user_id     Int
+  date        DateTime @default(now()) // Add this field
+  User        User     @relation(fields: [user_id], references: [id])
+}
+
