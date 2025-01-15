@@ -16,18 +16,7 @@ function TooltipIcon({ icon, tooltip, onClick }: TooltipIconProps) {
     <div className="relative group cursor-pointer" onClick={onClick}>
       <div className="mx-2">{icon}</div>
       <div
-        className="
-          absolute
-          bottom-0 left-1/2
-          transform -translate-x-1/2 translate-y-full
-          bg-gray-800 text-white text-xs
-          px-2 py-1 rounded-lg
-          opacity-0 group-hover:opacity-100
-          pointer-events-none
-          transition
-          whitespace-nowrap
-          z-50
-        "
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-gray-800 text-white text-xs px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition whitespace-nowrap z-50"
       >
         {tooltip}
       </div>
@@ -112,6 +101,29 @@ export default function DashboardPage() {
             <nav className="text-gray-600 text-sm">
               Home / <span className="font-bold">Invoices</span>
             </nav>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="relative mr-2">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="pl-8 pr-3 py-1 border rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+              />
+              <span className="absolute left-2 top-1.5 text-gray-400">🔍</span>
+            </div>
+            <TooltipIcon icon={<span>🔔</span>} tooltip="my notifications" />
+            <TooltipIcon icon={<span>⚙️</span>} tooltip="my settings" />
+            <TooltipIcon icon={<span>🌗</span>} tooltip="dark / light mode" />
+            <TooltipIcon
+              icon={
+                <img
+                  src="https://via.placeholder.com/32"
+                  alt="User"
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+              }
+              tooltip="my profile"
+            />
           </div>
         </header>
 
