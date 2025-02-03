@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/passport": "^10.0.3",
@@ -30,8 +31,8 @@
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "vitest": "^latest-version",
-    "vite": "^latest-version"
+    "vite": "latest",
+    "vitest": "latest"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

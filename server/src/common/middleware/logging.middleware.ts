@@ -8,16 +8,18 @@ export class LoggingMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const { ip, method, originalUrl } = req;
     const userAgent = req.get('user-agent') || '';
+    const startTime = Date.now(); // Capture start time
 
-    // Log the incoming request
     this.logger.log(
       `Request: ${method} ${originalUrl} - UA: ${userAgent} - IP: ${ip}`,
     );
 
-    // Optionally log again when the response is finished
     res.on('finish', () => {
       const { statusCode } = res;
-      this.logger.log(`Response: ${method} ${originalUrl} => Status: ${statusCode}`);
+      const duration = Date.now() - startTime; // Calculate response time
+      this.logger.log(
+        `Response: ${method} ${originalUrl} => Status: ${statusCode} (${duration}ms)`,
+      );
     });
 
     next();

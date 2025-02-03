@@ -9,21 +9,24 @@ datasource db {
 
 model User {
   id       Int       @id @default(autoincrement())
-  email    String    @unique
+  email    String    @unique @map("email")
   password String
   name     String
-  invoices Invoice[] // Add this field for the inverse relation
+  invoices Invoice[]
+
+  @@map("users")
 }
 
 model Invoice {
   id          Int      @id @default(autoincrement())
-  vendor_name String
+  vendorName  String   @map("vendor_name")
   amount      Float
-  due_date    DateTime
+  dueDate     DateTime @map("due_date")
   description String
   paid        Boolean
-  user_id     Int
-  date        DateTime @default(now()) // Add this field
-  User        User     @relation(fields: [user_id], references: [id])
-}
+  userId      Int      @map("user_id")
+  createdAt   DateTime @default(now()) @map("date")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@map("invoices")
+}

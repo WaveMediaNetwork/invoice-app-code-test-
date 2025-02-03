@@ -23,9 +23,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
       status = exception.getStatus();
       const exRes = exception.getResponse();
       message = typeof exRes === 'string' ? exRes : (exRes as any).message;
+    } else if (exception instanceof Error) {
+      message = exception.message;
     }
 
-    // Log the error
+    // Log full error details for debugging
     this.logger.error(
       `Exception: ${JSON.stringify({
         statusCode: status,
@@ -33,9 +35,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
         path: request.url,
         timestamp: new Date().toISOString(),
       })}`,
+      (exception as Error).stack,
     );
 
-    // Send custom error response
     response.status(status).json({
       statusCode: status,
       message,

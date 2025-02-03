@@ -2,13 +2,13 @@ import { IsBoolean, IsDateString, IsNumber, IsString } from 'class-validator';
 
 export class CreateInvoiceDto {
   @IsString()
-  vendor_name: string;
+  vendorName: string;
 
   @IsNumber()
   amount: number;
 
   @IsDateString()
-  due_date: string;
+  dueDate: string;
 
   @IsString()
   description: string;
@@ -17,5 +17,5 @@ export class CreateInvoiceDto {
   paid: boolean;
 
   @IsNumber()
-  user_id: number;
+  userId: number;
 }
