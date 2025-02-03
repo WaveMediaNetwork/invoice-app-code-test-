@@ -18,7 +18,7 @@ export default function AppRouter() {
                     <Route path="/dashboard" element={<DashboardPage />} />
                 </Route>
 
-                {/* Redirect '/' to Login if not authenticated */}
+                {/* Redirect "/" to Login */}
                 <Route path="/" element={<Navigate to="/login" replace />} />
 
                 {/* Catch-All for Undefined Routes */}
